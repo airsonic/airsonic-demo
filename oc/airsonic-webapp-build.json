@@ -8,7 +8,7 @@
     "source": {
       "type": "Git",
       "git": {
-        "uri": "https://github.com/biconou/airsonic-demo.git",
+        "uri": "https://github.com/airsonic/airsonic-demo.git",
         "ref": "master"
       }
     },

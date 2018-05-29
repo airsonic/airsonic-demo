@@ -12,7 +12,7 @@ log in to your OpenShift platform using the `oc login` command.
 
 Create a new project on OpenShift called (for instance) airsonic-demo
 
-`oc create project aisonic-demo`
+`oc new-project aisonic-demo`
 
 ### Create project objects
 
