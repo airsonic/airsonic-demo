@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="demo-user-demo" author="biconou">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="user" />
+        </preConditions>
+        <insert tableName="user">
+            <column name="username" value="demo"/>
+            <column name="password" value="demo"/>
+        </insert>
+        <insert tableName="music_folder_user">
+            <column name="username" value="demo"/>
+            <column name="music_folder_id" value="1"/>
+        </insert>
+        <sql>update "user" set password='admin666demo' where username='admin'</sql>
+        <rollback/>
+    </changeSet>
+    <changeSet id="demo-user-demo-roles" author="biconou">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="user_role" />
+        </preConditions>
+        <!-- role : allowed to play files -->
+        <insert tableName="user_role">
+            <column name="username" value="demo"/>
+            <column name="role_id" value="8"/>
+        </insert>
+        <rollback/>
+    </changeSet>
+</databaseChangeLog>

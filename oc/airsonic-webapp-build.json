@@ -1,0 +1,25 @@
+{
+  "kind": "BuildConfig",
+    "apiVersion": "v1",
+    "metadata": {
+      "name": "airsonic-webapp-build"
+    },
+  "spec": {
+    "source": {
+      "type": "Git",
+      "git": {
+        "uri": "https://github.com/biconou/airsonic-demo.git",
+        "ref": "master"
+      }
+    },
+    "strategy": {
+      "type": "Docker"
+    },
+    "output": {
+      "to": {
+        "kind": "ImageStreamTag",
+        "name": "airsonic-webapp:latest"
+      }
+    }
+  }
+}
