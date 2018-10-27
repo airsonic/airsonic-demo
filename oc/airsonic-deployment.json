@@ -1,0 +1,77 @@
+{
+  "apiVersion": "v1",
+  "kind": "DeploymentConfig",
+  "metadata": {
+    "labels": {
+      "app": "airsonic"
+    },
+    "name": "airsonic"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "app": "airsonic",
+      "deploymentconfig": "airsonic"
+    },
+    "strategy": {
+      "type": "Recreate"
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "airsonic",
+          "deploymentconfig": "airsonic"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "airsonic",
+            "imagePullPolicy": "Always",
+            "ports": [
+              {
+                "containerPort": 8778,
+                "protocol": "TCP"
+              },
+              {
+                "containerPort": 9779,
+                "protocol": "TCP"
+              }
+            ],
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "resources": {
+              "limits": {
+                "memory": "512Mi"
+              }
+            }
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "terminationGracePeriodSeconds": 30
+      }
+    },
+    "test": false,
+    "triggers": [
+      {
+        "type": "ConfigChange"
+      },
+      {
+        "imageChangeParams": {
+          "automatic": true,
+          "containerNames": [
+            "airsonic"
+          ],
+          "from": {
+            "kind": "ImageStreamTag",
+            "name": "airsonic:latest",
+            "namespace": "airsonic-demo"
+          }
+        },
+        "type": "ImageChange"
+      }
+    ]
+  }
+}

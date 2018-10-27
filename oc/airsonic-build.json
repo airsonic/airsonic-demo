@@ -1,0 +1,21 @@
+{
+  "kind": "BuildConfig",
+    "apiVersion": "v1",
+    "metadata": {
+      "name": "airsonic-build"
+    },
+  "spec": {
+    "source": {
+      "type": "Binary"
+    },
+    "strategy": {
+      "type": "Docker"
+    },
+    "output": {
+      "to": {
+        "kind": "ImageStreamTag",
+        "name": "airsonic:latest"
+      }
+    }
+  }
+}
